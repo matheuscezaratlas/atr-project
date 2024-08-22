@@ -13,10 +13,16 @@ class Event extends Model
         'name',
         'description',
         'place_id',
+        'category_id',
     ];
 
     public function place()
     {
         return $this->belongsTo(Place::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

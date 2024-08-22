@@ -154,5 +154,8 @@ return [
         App\Providers\EventRepositoryProvider::class,
         App\Providers\PlaceServiceProvider::class,
         App\Providers\PlaceRepositoryProvider::class,
+        App\Providers\EmailServiceProvider::class,
+        App\Providers\SubscriptionApiServiceProvider::class,
+        App\Providers\SubscriptionClientProvider::class,
     ],
 ];

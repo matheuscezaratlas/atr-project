@@ -14,6 +14,7 @@ class Subscription extends Model
     protected $fillable = [
         'full_name',
         'event_id',
+        'email',
     ];
 
     protected $appends = [

@@ -5,15 +5,18 @@ namespace App\Services\Events;
 use App\Models\Event;
 use App\Repositories\Contracts\EventRepositoryContract;
 use App\Services\Events\Contracts\EventServiceContract;
+use App\Services\Contracts\EmailServiceContract;
 use Illuminate\Support\Collection;
 
 class EventService implements EventServiceContract
 {
     /**
      * @param  EventRepositoryContract  $repository
+     * @param  EmailServiceContract  $emailService
      */
     public function __construct(
-        protected EventRepositoryContract $repository
+        protected EventRepositoryContract $repository,
+        protected EmailServiceContract $emailService
     ) {
         //
     }
@@ -23,7 +26,9 @@ class EventService implements EventServiceContract
      */
     public function storeEvent(array $event): Event
     {
-        return $this->repository->store($event);
+        $event = $this->repository->store($event);
+        $this->emailService->dispatchNewEventEmail($event->category_id);
+        return $event;
     }
 
     /**

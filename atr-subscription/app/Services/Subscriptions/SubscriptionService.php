@@ -58,16 +58,9 @@ class SubscriptionService implements SubscriptionServiceContract
     /**
      * {@inheritDoc}
      */
-    public function getSubscriptionsByEventId(int $eventId): Collection
+    public function getSubscriptionsByEventIds(array $eventIds): Collection
     {
-        $response = $this->eventApiService->getEvent($eventId);
-        $statusCode = $response->getStatusCode();
-
-        if ($statusCode != Response::HTTP_OK) {
-            throw new EventNotFoundException();
-        }
-
-        return $this->repository->getByEventId($eventId);
+        return $this->repository->getByEventIds($eventIds);
     }
 
     /**

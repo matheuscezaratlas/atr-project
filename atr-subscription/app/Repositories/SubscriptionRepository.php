@@ -28,8 +28,8 @@ class SubscriptionRepository extends BaseRepository implements SubscriptionRepos
         return $this->model::where('event_id', $eventId)->count();
     }
 
-    public function getByEventId(int $eventId): Collection
+    public function getByEventIds(array $eventIds): Collection
     {
-        return $this->model::where('event_id', $eventId)->get();
+        return $this->model::whereIn('event_id', $eventIds)->get();
     }
 }

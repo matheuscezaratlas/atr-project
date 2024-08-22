@@ -17,6 +17,7 @@ class StoreEventRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'place_id' => 'required|exists:places,id',
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }

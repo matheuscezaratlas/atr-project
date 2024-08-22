@@ -13,7 +13,7 @@ Route::prefix('/subscription')->name('subscription')->group(function () {
         ->name('.index');
     Route::get('/{id}', GetSubscriptionController::class)
         ->name('.get');
-    Route::get('/event/{event_id}', ListSubscriptionsByEventController::class)
+    Route::get('/event/{event_ids}', ListSubscriptionsByEventController::class)
         ->name('.get');
     Route::delete('/{id}', DeleteSubscriptionController::class)
         ->name('.delete');

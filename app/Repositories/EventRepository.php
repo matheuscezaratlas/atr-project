@@ -15,11 +15,16 @@ class EventRepository extends BaseRepository implements EventRepositoryContract
 
     public function all(): Collection
     {
-        return $this->model::with('place')->get();
+        return $this->model::with('place')->with('category')->get();
     }
 
     public function findById(int $id): Event
     {
-        return $this->model::with('place')->where('id', $id)->firstOrFail();;
+        return $this->model::with('place')->with('category')->where('id', $id)->firstOrFail();;
+    }
+
+    public function getEventsByCategoryId(int $categoryId): Collection
+    {
+        return $this->model::where('category_id', $categoryId)->get();;
     }
 }
